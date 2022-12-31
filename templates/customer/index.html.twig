@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Customer!{% endblock %}
+
+{% block sideMenu %}
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-gear"></i>
+            Options
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a href="#" data-toggle="modal" data-target="#createScheduleModal">Create Schedule</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello Customer Form! ✅</h1>
+    Customer:
+    
+<table>
+    <thead>
+    		<tr>
+        		<th> Anrede </th>
+        		<th> Vorname </th>
+        		<th> Nachnahme </th>
+        		<th> Kundennummer </th>
+        		<th> Strasse </th>
+        		<th> Hausnummer </th>
+        		<th> Postleitzahl </th>
+        		<th> Stadt </th>
+        		<th> Land </th>
+        		<th> Bearbeiten </th>
+    		</tr>
+    </thead>
+    <tbody>
+        {% for item in customers %}
+        	<tr>
+            	<td>{{ item.salutation }}</td>
+            	<td>{{ item.name }}</td>
+            	<td>{{ item.prename }}</td>
+            	<td>{{ item.customerNumber }}</td>
+            	<td>{{ item.street }}</td>
+            	<td>{{ item.number }}</td>
+            	<td>{{ item.postalCode }}</td>
+            	<td>{{ item.city }}</td>
+            	<td>{{ item.country }}</td>
+            	<td><a href="{{ path('edit_customer', { id : item.id }) }}" class="list-group-item small delete">
+            		<i class="fa fa-trash"></i>
+            		Customer bearbeiten
+        		</a></td>	
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+            
+{% endblock %}
