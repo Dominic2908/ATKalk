@@ -79,4 +79,20 @@ class CustomerController extends AbstractController
         ]);
     }
     
+    #[Route("/delete/{id}", name:"del_customer", methods:"POST|GET")]
+    public function customerDel(ManagerRegistry $doctrine, Request $request, Customer $customer):Response 
+    {
+       
+        $customerDel = $doctrine->getRepository(Customer::class)->remove($customer);
+        $entityManager = $doctrine->getManager();
+        $entityManager->flush();
+        
+        $customers =  $doctrine->getRepository(Customer::class)->findAll();
+        
+        return $this->renderForm('customer/index.html.twig', [
+            
+            'customers' => $customers,
+        ]);
+    }
+    
 }

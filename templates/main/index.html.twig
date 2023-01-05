@@ -10,7 +10,8 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
-
+    {{ knp_menu_render('main') }}
+    {{ knp_menu_render('sidebar') }}
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ 'F:/EclipseWorkspace/ATKalk/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>

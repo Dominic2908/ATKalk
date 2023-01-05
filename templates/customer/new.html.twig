@@ -10,7 +10,8 @@
 
 <div class="example-wrapper">
     <h1>Hello Customer Form! ✅</h1>
-
+    {{ knp_menu_render('main') }}
+    {{ knp_menu_render('sidebar') }}
     Customer:
     {{ form_start(form) }}
     <table>
