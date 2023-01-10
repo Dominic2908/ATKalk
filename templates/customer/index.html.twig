@@ -3,23 +3,11 @@
      {{ parent() }}
      {{ encore_entry_link_tags('customerList') }}
 {% endblock %}
+
 {% block title %}Hello Customer!{% endblock %}
 
-{% block sideMenu %}
-    <div class="card">
-        <div class="card-header">
-            <i class="fa fa-gear"></i>
-            Options
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <a href="#" data-toggle="modal" data-target="#createScheduleModal">Create Schedule</a>
-            </li>
-        </ul>
-    </div>
-{% endblock %}
-
 {% block body %}
+
 {% block menu %}
 
 	{% include ('menu/menu.html.twig') %}
