@@ -11,6 +11,7 @@ import './styles/app.css';
 import './bootstrap/js/bootstrap.bundle.js'
 import './bootstrap/css/bootstrap.css'
 import './menu.js'
+import './styles/menu.css'
 //const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
