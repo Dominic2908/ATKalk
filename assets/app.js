@@ -6,12 +6,26 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+import './styles/customerList.css';
 import './styles/app.css';
+import './bootstrap/js/bootstrap.bundle.js'
+import './bootstrap/css/bootstrap.css'
+import './menu.js'
+//const $ = require('jquery');
+// this "modifies" the jquery module: adding behavior to it
+// the bootstrap module doesn't export/return anything
+
+require('bootstrap');
+
+// or you can include specific pieces
+//require('bootstrap/js/dist/tooltip');
+//require('bootstrap/js/dist/popover');
 
 // start the Stimulus application
-import './bootstrap';
-import $ from 'jquery';
-import greet from './greet';
+
+//import './bootstrap';
+//import $ from 'jquery';
+//import greet from './greet';
 $(document).ready(function() {
     //$('body').prepend('<h1>'+greet('jill')+'</h1>');
 });
