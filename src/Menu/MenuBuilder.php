@@ -47,7 +47,12 @@ class MenuBuilder
         $menu['Customer']->addChild('offers', array('route' => 'new_customer'));
         
         $menu['Customer']->addChild('invoices', array('route' => 'new_customer'));
-        //$menu->addChild('Create Customer', ['route' => 'new_customer']);
+        
+        $menu->addChild('Material Mangement', ['route' => 'new_customer']);
+        
+        $menu->addChild('User', ['route' => 'new_customer']);
+        
+        $menu->addChild('Tickets', ['route' => 'new_customer']);
         //$menu['Create Customer']->setAttribute('class', 'nav-item');
         //$menu['Create Customer']->setLinkAttribute('class', 'nav-link');
         // ... add more children
