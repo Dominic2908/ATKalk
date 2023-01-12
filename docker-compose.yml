@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+###> doctrine/doctrine-bundle ###
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: Symfony_CRM
+      MYSQL_USER: rootUser
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: test
+    volumes:
+      - mysql:/var/lib/mysql
+      # - db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+    networks:
+      - default
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db:db
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_USER: rootUser
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: test
+###< doctrine/doctrine-bundle ###
+
+volumes:
+###> doctrine/doctrine-bundle ###
+  mysql:
+###< doctrine/doctrine-bundle ###
