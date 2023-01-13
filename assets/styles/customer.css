@@ -10,6 +10,6 @@ body {
 }
 
 .container{
-	border: solid 1px 0.5px 1px 1px red;
-
+	border: ridge 1px #000;
+	margin-top: 1%;
 }
