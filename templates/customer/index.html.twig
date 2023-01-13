@@ -1,31 +1,22 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('customer') }}
+{% endblock %}
 
 {% block title %}Hello Customer!{% endblock %}
 
-{% block sideMenu %}
-    <div class="card">
-        <div class="card-header">
-            <i class="fa fa-gear"></i>
-            Options
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <a href="#" data-toggle="modal" data-target="#createScheduleModal">Create Schedule</a>
-            </li>
-        </ul>
-    </div>
-{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
+{% block menu %}
+
+	{% include ('menu/menu.html.twig') %}
+
+{% endblock %}
 <div class="example-wrapper">
-    <h1>Hello Customer Form! ✅</h1>
-    Customer:
+    <h1>Customer List!</h1>
     
+   
 <table>
     <thead>
     		<tr>
@@ -57,9 +48,13 @@
             		<i class="fa fa-trash"></i>
             		Customer bearbeiten
         		</a></td>	
+        		<td><a href="{{ path('edit_customer', { id : item.id }) }}" class="list-group-item small delete">
+            		<i class="fa fa-trash"></i>
+            		Customer loeschen
+        		</a></td>	
             </tr>
         {% endfor %}
     </tbody>
 </table>
-            
+
 {% endblock %}
