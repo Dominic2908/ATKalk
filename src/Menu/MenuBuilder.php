@@ -44,11 +44,19 @@ class MenuBuilder
         
         $menu['Customer']->addChild('Create Customer', array('route' => 'new_customer'));
         
-        $menu['Customer']->addChild('offers', array('route' => 'new_customer'));
+        $menu['Customer']->addChild('offers new', array('route' => 'new_customer'));
         
-        $menu['Customer']->addChild('invoices', array('route' => 'new_customer'));
+        $menu['Customer']->addChild('offers list', array('route' => 'new_customer'));
         
-        $menu->addChild('Material Mangement', ['route' => 'new_customer']);
+        $menu['Customer']->addChild('invoices new', array('route' => 'new_customer'));
+        
+        $menu['Customer']->addChild('invoices list', array('route' => 'new_customer'));
+        
+        $menu->addChild('Material Management', ['route' => 'new_customer']);
+        
+        $menu['Material Management']->addChild('new Product', array('route' => 'new_customer'));
+        
+        $menu['Material Management']->addChild('Product List', array('route' => 'new_customer'));
         
         $menu->addChild('User', ['route' => 'new_customer']);
         
