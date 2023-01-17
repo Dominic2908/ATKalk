@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class InvoiceController extends AbstractController
+class SalesManagementController extends AbstractController
 {
-    #[Route('/invoice', name: 'app_invoice')]
+    #[Route('/sales/management', name: 'app_sales_management')]
     public function index(): Response
     {
-        return $this->render('invoice/index.html.twig', [
-            'controller_name' => 'InvoiceController',
+        return $this->render('sales_management/index.html.twig', [
+            'controller_name' => 'SalesManagementController',
         ]);
     }
 }

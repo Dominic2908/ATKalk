@@ -19,11 +19,14 @@ class CustomerController extends AbstractController
         
         $customer = new Customer();
         
+        $options =  'app_customer';
+        
         $customers =  $doctrine->getRepository(Customer::class)->findAll();
         
         return $this->renderForm('customer/index.html.twig', [
             
             'customers' => $customers,
+            'options' => $options,
         ]);
     }
     
@@ -44,13 +47,18 @@ class CustomerController extends AbstractController
             
             $entityManager->persist($customer);
             
+            $options =  'new_customer';
+            
             $entityManager->flush();
             
             return $this->redirectToRoute('app_customer');
         }
+        
+        $options =  'new_customer';
         //$data = phpinfo();
         return $this->renderForm('customer/new.html.twig', [
             'form' => $form,
+            'options' => $options,
         ]);
     }
     
@@ -67,15 +75,20 @@ class CustomerController extends AbstractController
             
             $entityManager->persist($customer);
             
+            $options =  'edit_customer';
+            
             $entityManager->flush();
             
             return $this->redirectToRoute('app_customer');
         }
         
+        $options =  'edit_customer';
+        
         return $this->renderForm('customer/edit.html.twig', [
             //'data' => $data,
             'form' => $form,
             'customers' => $customerEdit,
+            'options' => $options,
         ]);
     }
     
@@ -89,9 +102,12 @@ class CustomerController extends AbstractController
         
         $customers =  $doctrine->getRepository(Customer::class)->findAll();
         
+        $options =  'del_customer';
+        
         return $this->renderForm('customer/index.html.twig', [
             
             'customers' => $customers,
+            'options' => $options,
         ]);
     }
     

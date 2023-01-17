@@ -42,8 +42,6 @@ class MenuBuilder
         
         $menu['Customer']->addChild('Customer List', array('route' => 'app_customer'));
         
-        $menu['Customer']->addChild('Create Customer', array('route' => 'new_customer'));
-        
         $menu['Customer']->addChild('offers new', array('route' => 'new_customer'));
         
         $menu['Customer']->addChild('offers list', array('route' => 'new_customer'));
@@ -51,6 +49,10 @@ class MenuBuilder
         $menu['Customer']->addChild('invoices new', array('route' => 'new_customer'));
         
         $menu['Customer']->addChild('invoices list', array('route' => 'new_customer'));
+        
+        $menu['Customer']->addChild('order new', array('route' => 'new_customer'));
+        
+        $menu['Customer']->addChild('order list', array('route' => 'new_customer'));
         
         $menu->addChild('Material Management', ['route' => 'new_customer']);
         
@@ -73,9 +75,9 @@ class MenuBuilder
         $menu = $this->factory->createItem('sidebar');
         
         if (isset($options['include_homepage']) && $options['include_homepage']) {
-            $menu->addChild('Home', ['route' => 'app_main']);
-            $menu->addChild('Customer List', ['route' => 'app_customer']);
+            
             $menu->addChild('Create Customer', ['route' => 'new_customer']);
+            $menu['Create Customer']->setAttribute('class', 'list-group-item list-group-item-action');
         }
         
         // ... add more children

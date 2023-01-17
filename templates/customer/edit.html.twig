@@ -26,20 +26,22 @@ Edit Customer
 <div class="container">
 <h3>persönliche Angaben</h3></br>
   <div class="row">  
- 	<div class="col-6 col-sm-2"><p class="pers_inf">Anrede</p></div>
-    <div class="col-6 col-sm-2">{{ form_row(form.salutation) }} </div>
-    <div class="w-100"></div>
-    <div class="col-6 col-sm-2"><p class="pers_inf">Mailadresse</p></div>
-    <div class="col-6 col-sm-2">{{ form_row(form.mail) }}  </div>
-    <div class="w-100"></div>
-    <div class="col-6 col-sm-2"><p class="pers_inf">Vorname</p></div>
-    <div class="col-6 col-sm-2">{{ form_row(form.name) }}  </div>
-    <div class="w-100"></div>
-    <div class="col-6 col-sm-2"><p class="pers_inf">Nachnahme</p></div>
-    <div class="col-6 col-sm-2">{{ form_row(form.prename) }}  </div>
-    <div class="w-100"></div>
-    <div class="col-6 col-sm-2"><p class="pers_inf">Kundennummer</p></div>
-    <div class="col-6 col-sm-2">{{ form_row(form.customerNumber) }}  </div>      
+      <div class="col">
+     	<div class="col-6 col-sm-2"><p class="pers_inf">Anrede</p></div>
+        <div class="col-6 col-sm-2">{{ form_row(form.salutation) }} </div>
+        <div class="w-100"></div>
+        <div class="col-6 col-sm-2"><p class="pers_inf">Mailadresse</p></div>
+        <div class="col-6 col-sm-2">{{ form_row(form.mail) }}  </div>
+        <div class="w-100"></div>
+        <div class="col-6 col-sm-2"><p class="pers_inf">Vorname</p></div>
+        <div class="col-6 col-sm-2">{{ form_row(form.name) }}  </div>
+        <div class="w-100"></div>
+        <div class="col-6 col-sm-2"><p class="pers_inf">Nachnahme</p></div>
+        <div class="col-6 col-sm-2">{{ form_row(form.prename) }}  </div>
+        <div class="w-100"></div>
+        <div class="col-6 col-sm-2"><p class="pers_inf">Kundennummer</p></div>
+        <div class="col-6 col-sm-2">{{ form_row(form.customerNumber) }}  </div>      
+      </div>
   </div>
   <p>wenn Rechnungsadresse gleich Lieferadresse ist:</p>
   <button id="sam_addr_new_cust" type="button" class="btn btn-primary">Primary</button>
