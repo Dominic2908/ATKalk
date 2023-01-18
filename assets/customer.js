@@ -1,5 +1,6 @@
 import './styles/customer.css';
 //import './app.js';
+
 $(document).ready(function() {
     $("#sam_addr_new_cust").click(function(){
     	getAddress();

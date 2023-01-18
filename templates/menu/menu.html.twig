@@ -1,18 +1,17 @@
 
 {% block another %}
-<style>
 
-</style>
+<nav>     
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light"> 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    
-        {{ knp_menu_render('main') }}
-        
-    </div>
+    {{ knp_menu_render('main') }}
+
 </nav>
+
 <div class="list-group">
-{% set menu = knp_menu_get('sidebar', [], {include_homepage: false}) %}
-{{ knp_menu_render(menu) }}
+
+    {% set menu = knp_menu_get('sidebar', [], {include_homepage: false}) %}
+    {{ knp_menu_render(menu) }}
+
 </div>
+
 {% endblock %}

@@ -34,31 +34,29 @@ class MenuBuilder
         $menu->setChildrenAttribute('class', 'nav');
         //$menu['Home']->setAttribute('class', 'nav-item active');
         //$menu['Home']->setLinkAttribute('class', 'nav-link');
-        $menu->addChild('Customer', ['route' => 'app_customer']);
+        $menu->addChild('Sales Management', ['route' => 'app_customer']);
         /*$menu['Customer List']->setAttribute('class', 'dropdown');
          $menu['Customer List']->setLinkAttribute('class', 'nav-link');
          $menu['Customer List']->setChildrenAttribute('class', '')
          ->setChildrenAttribute('id', '');   */
         
-        $menu['Customer']->addChild('Customer List', array('route' => 'app_customer'));
+        $menu['Sales Management']->addChild('Customer List', array('route' => 'app_customer'));
         
-        $menu['Customer']->addChild('offers new', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('offers new', array('route' => 'new_customer'));
         
-        $menu['Customer']->addChild('offers list', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('offers list', array('route' => 'new_customer'));
         
-        $menu['Customer']->addChild('invoices new', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('invoices new', array('route' => 'new_customer'));
         
-        $menu['Customer']->addChild('invoices list', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('invoices list', array('route' => 'new_customer'));
         
-        $menu['Customer']->addChild('order new', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('order new', array('route' => 'new_customer'));
         
-        $menu['Customer']->addChild('order list', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('order list', array('route' => 'new_customer'));
         
-        $menu->addChild('Material Management', ['route' => 'new_customer']);
+        $menu->addChild('Material Management', ['route' => 'app_product_productList']);
         
-        $menu['Material Management']->addChild('new Product', array('route' => 'new_customer'));
-        
-        $menu['Material Management']->addChild('Product List', array('route' => 'new_customer'));
+        $menu['Material Management']->addChild('Product List', array('route' => 'app_product_productList'));
         
         $menu->addChild('User', ['route' => 'new_customer']);
         
