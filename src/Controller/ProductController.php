@@ -13,11 +13,11 @@ use App\Entity\Product;
 
 class ProductController extends AbstractController
 {
-    private $matmanserv;
+    private $productService;
     
-    public function __construct(ProductService $matmanserv)
+    public function __construct(ProductService $productService)
     {
-        $this->matmanserv = $matmanserv;
+        $this->productService = $productService;
     }
     
     #[Route('/product', name: 'app_product')]
@@ -32,7 +32,7 @@ class ProductController extends AbstractController
     #[Route('/product/productList', name: 'app_product_productList')]
     public function productList():Response
     {
-        $products = $this->matmanserv->getProducts();
+        $products = $this->productService->getProducts();
         
         return $this->render('product/index.html.twig', [
             
@@ -54,7 +54,7 @@ class ProductController extends AbstractController
             
             $product = $form->getData();
             
-            $this->matmanserv->newProduct($product);
+            $this->productService->newProduct($product);
             
             return $this->redirectToRoute('app_product_productList');
         }
@@ -68,14 +68,14 @@ class ProductController extends AbstractController
     #[Route('/product/{id}/editProduct', name: 'app_product_editProduct')]
     public function productEdit(Request $request, Product $product):Response
     {
-        $productEdit = $this->matmanserv->editProduct($product);
+        $productEdit = $this->productService->editProduct($product);
         $form = $this->createForm(ProductType::class, $productEdit);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
             
-            $this->matmanserv->newProduct($product);
+            $this->productService->newProduct($product);
             
             return $this->redirectToRoute('app_product_productList');
         }
@@ -94,7 +94,7 @@ class ProductController extends AbstractController
     public function productDel(Request $request, Product $product):Response
     {
         
-        $products = $this->matmanserv->delProduct($product);
+        $products = $this->productService->delProduct($product);
         
         //$options =  'edit_customer';
         

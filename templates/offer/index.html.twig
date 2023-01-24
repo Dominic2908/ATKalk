@@ -6,12 +6,12 @@
 
 {% block stylesheets %}
      {{ parent() }}
-     {{ encore_entry_link_tags('product') }}
+     {{ encore_entry_link_tags('offer') }}
 {% endblock %}
 
 {% block javascripts %}
      {{ parent() }}
-     {{ encore_entry_script_tags('product') }}
+     {{ encore_entry_script_tags('offer') }}
 {% endblock %}
 
 
@@ -27,7 +27,7 @@
 
 <div class="wrapper">
 <h1>Product List!</h1>
-<button type="button" onclick="location.href='{{ path('app_product_newProduct') }}';" class="btn btn-primary">NEW</button>
+<button type="button" onclick="location.href='{{ path('app_offer_newOffer') }}';" class="btn btn-primary">NEW</button>
     <table>
     <thead>
     		<tr>
@@ -44,23 +44,21 @@
     		</tr>
     </thead>
     <tbody>
-        {% for item in products %}
+        {% for item in offers %}
         	<tr>
-            	<td>{{ item.productName }}</td>
-            	<td>{{ item.productType }}</td>
-            	<td>{{ item.price }}</td>
-            	<td>{{ item.description }}</td>
+            	<td>{{ item.customerId }}</td>
+            	<td>{{ item.creationDate |date("m/d/Y")}}</td>
+            	<td>{{ item.orderListNumber }}</td>
+            	<td>{{ item.expiryDate |date("m/d/Y")}}</td>
             	<td>{{ item.taxRate }}</td>
-            	<td>{{ item.serialNumber }}</td>
-            	<td>{{ item.intNumber }}</td>
-            	<td>{{ item.storagePlace }}</td>
-            	<td>{{ item.quantity }}</td>
+            	<td>{{ item.price }}</td>
             	
-            	<td><a href="{{ path('app_product_editProduct', { id : item.id }) }}" class="list-group-item small">
+            	
+            	<td><a href="{{ path('app_offer_editOffer', { id : item.id }) }}" class="list-group-item small">
             		<i class="fa fa-trash"></i>
             		<span style="font-size: 24px;">&#9997;</span>
         		</a></td>	
-        		<td><a href="{{ path('app_product_delProduct', { id : item.id }) }}" class="list-group-item small">
+        		<td><a href="{{ path('app_offer_delOffer', { id : item.id }) }}" class="list-group-item small">
             		<i class="fa fa-trash"></i>
             		<span style="font-size: 24px;">&dagger;</span>
         		</a></td>	

@@ -13,7 +13,7 @@
 	{% include ('menu/menu.html.twig') %}
 
 {% endblock %}
-<div class="example-wrapper">
+<div class="wrapper">
     <h1>Customer List!</h1>
     <button type="button" onclick="location.href='{{ path('new_customer') }}';" class="btn btn-primary">NEW</button>  
 <table>
@@ -29,6 +29,7 @@
         		<th> Stadt </th>
         		<th> Land </th>
         		<th> Bearbeiten </th>
+        		<th> löschen </th>
     		</tr>
     </thead>
     <tbody>
@@ -43,13 +44,13 @@
             	<td>{{ item.postalCode }}</td>
             	<td>{{ item.city }}</td>
             	<td>{{ item.country }}</td>
-            	<td><a href="{{ path('edit_customer', { id : item.id }) }}" class="list-group-item small delete">
+            	<td><a href="{{ path('edit_customer', { id : item.id }) }}" class="list-group-item small">
             		<i class="fa fa-trash"></i>
-            		Customer bearbeiten
+            		<span style="font-size: 24px;">&#9997;</span>
         		</a></td>	
-        		<td><a href="{{ path('del_customer', { id : item.id }) }}" class="list-group-item small delete">
+        		<td><a href="{{ path('del_customer', { id : item.id }) }}" class="list-group-item small">
             		<i class="fa fa-trash"></i>
-            		Customer loeschen
+            		<span style="font-size: 24px;">&dagger;</span>
         		</a></td>	
             </tr>
         {% endfor %}

@@ -1,9 +1,6 @@
 body {
     background-color: #c0c0c0;
 }
-.example-wrapper {
-	margin: 1em auto; max-width: 1200px; width: 95%; font: 14px/1.5 sans-serif; 
-}
 
 .adress_inf{
  	line-height: 1.9;
@@ -12,4 +9,32 @@ body {
 .container{
 	border: ridge 1px #000;
 	margin-top: 1%;
+}
+
+.wrapper { 
+	margin: 1em auto; 
+	max-width: 1800px; 
+	width: 95%; 
+	font: 12px/1.5 sans-serif; 
+	overflow: hidden;
+}
+
+table, th, td, tr{
+	border: ridge 1px #000;
+	margin: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+.customer1{
+	max-width: 1800px;
+}
+
+.overview_customer{
+	border: ridge 1px #000;
+	margin: 10px;
 }

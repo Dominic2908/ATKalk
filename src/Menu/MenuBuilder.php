@@ -42,9 +42,9 @@ class MenuBuilder
         
         $menu['Sales Management']->addChild('Customer List', array('route' => 'app_customer'));
         
-        $menu['Sales Management']->addChild('offers new', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('offers new', array('route' => 'app_offer_newOffer'));
         
-        $menu['Sales Management']->addChild('offers list', array('route' => 'new_customer'));
+        $menu['Sales Management']->addChild('offers list', array('route' => 'app_offer_offerList'));
         
         $menu['Sales Management']->addChild('invoices new', array('route' => 'new_customer'));
         
