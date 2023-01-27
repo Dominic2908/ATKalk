@@ -9,3 +9,29 @@
 .modal-body, td{
 	margin: 2%;
 }
+
+.modal-xl{
+	max-width: 1800px;
+}
+
+.modal-body, table, th, td, caption {
+  border: thin solid #a0a0a0;
+}
+
+.modal-body, table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-width: thin 0 0 thin;
+  margin: 0 0 1em;
+  table-layout: auto;
+  max-width: 100%;
+}
+.modal-body, th, td {
+  font-weight: normal;
+  text-align: left;
+}
+.modal-body, th, caption {
+  background-color: #f1f3f4;
+  font-weight: 700;
+}
+.customer_offer:hover {background-color: coral;}
