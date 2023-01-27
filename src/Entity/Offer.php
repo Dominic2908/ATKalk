@@ -31,6 +31,46 @@ class Offer
 
     #[ORM\Column]
     private ?float $price = null;
+    
+    #[Assert\Type(type: Customer::class)]
+    #[Assert\Valid]
+    protected  $customer;
+    
+    #[Assert\Type(type: Product::class)]
+    #[Assert\Valid]
+    protected  $product;
+
+    /**
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param mixed $product
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param mixed $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
 
     public function getId(): ?int
     {

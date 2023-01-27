@@ -6,12 +6,12 @@
 
 {% block stylesheets %}
      {{ parent() }}
-     {{ encore_entry_link_tags('product') }}
+     {{ encore_entry_link_tags('offer') }}
 {% endblock %}
 
 {% block javascripts %}
      {{ parent() }}
-     {{ encore_entry_script_tags('product') }}
+     {{ encore_entry_script_tags('offer') }}
 {% endblock %}
 
 
@@ -20,15 +20,143 @@
 	{% include ('menu/menu.html.twig') %}
 
 {% endblock %}
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Bestandskunden</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <table>
+         {% for item in customer_data %}
+        	<tr id="{{ item.id }}">
+            	<td>{{ item.salutation }}</td>
+            	<td>{{ item.name }}</td>
+            	<td>{{ item.prename }}</td>
+            	<td>{{ item.customerNumber }}</td>
+            	<td>{{ item.street }}</td>
+            	<td>{{ item.number }}</td>
+            	<td>{{ item.postalCode }}</td>
+            	<td>{{ item.city }}</td>
+            	<td>{{ item.country }}</td>
+            </tr>
+        {% endfor %}
+	</table>
+	</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="wrapper">
-    {{ form_start(form1) }}
-    {{ form_end(form1) }}    
-    {{ form_start(form2) }}
-    {{ form_end(form2) }}   
+
+        {{ form_start(form) }}
+    <div class="container">
+    	<!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Bestandskunde
+        </button>
+        <h3>persönliche Angaben</h3></br>
+          <div class="row">  
+         	<div class="col-6 col-sm-2"><p class="pers_inf">Anrede</p></div>
+            <div class="col-6 col-sm-2">{{ form_row(form.Customer.salutation) }} </div>
+            <div class="w-100"></div>
+            <div class="col-6 col-sm-2"><p class="pers_inf">Vorname</p></div>
+            <div class="col-6 col-sm-2">{{ form_row(form.Customer.name) }}  </div>
+            <div class="w-100"></div>
+            <div class="col-6 col-sm-2"><p class="pers_inf">Nachnahme</p></div>
+            <div class="col-6 col-sm-2">{{ form_row(form.Customer.mail) }}  </div>
+            <div class="w-100"></div>
+            <div class="col-6 col-sm-2"><p class="pers_inf">Mailadresse</p></div>
+            <div class="col-6 col-sm-2">{{ form_row(form.Customer.prename) }}  </div>
+            <div class="w-100"></div>
+            <div class="col-6 col-sm-2"><p class="pers_inf">Kundennummer</p></div>
+            <div class="col-6 col-sm-2">{{ form_row(form.Customer.customerNumber) }}  </div>      
+          </div>
+          <p>wenn Rechnungsadresse gleich Lieferadresse ist:</p>
+          <button id="sam_addr_new_cust" type="button" class="btn btn-primary">Primary</button>
+    </div>
+    <div class="container offer_middle_container">
+      <div class="row">
+        <div class="col">
+        <p>Erstellungsdatum</p>
+          {{ form_row(form.creation_date) }}
+        </div>
+        <div class="col-6">
+          <p>Order Liste</p>
+          {{ form_row(form.order_list_number) }}
+        </div>
+        <div class="col">
+          
+          {{ form_row(form.expiry_date) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          1 of 3
+        </div>
+        <div class="col-5">
+          2 of 3 (wider)
+        </div>
+        <div class="col">
+          3 of 3
+        </div>
+      </div>
+    </div>    
+	<div class="container offer_list_container">
+      <div class="row">
+      <h3>Rechnungsadresse</h3>
+      	<div class="col">
+      		<p  class="adress_inf">Strasse</br>
+      		Hausnummer</br>
+      		Postleitzahl</br>
+      		Stadt</br>
+      		Land</br></p>
+      		
+      	</div>
+        <div class="col">
+    	 	{{ form_row(form.Customer.street) }}
+            {{ form_row(form.Customer.number) }} 
+            {{ form_row(form.Customer.postalcode) }}
+            {{ form_row(form.Customer.city) }} 
+            {{ form_row(form.Customer.country) }}    
+        </div>
+        <h3>Lieferadresse</h3>
+        <div class="col">
+        <p class="adress_inf">Strasse</br>
+      		Hausnummer</br>
+      		Postleitzahl</br>
+      		Stadt</br>
+      		Land</br></p>
+      	</div>
+        <div class="col">
+            {{ form_row(form.Customer.streetInvoice) }}
+            {{ form_row(form.Customer.numberInvoice) }} 
+            {{ form_row(form.Customer.postlalcodeInvoice) }}
+            {{ form_row(form.Customer.cityInvoice) }} 
+            {{ form_row(form.Customer.countryInvoice) }} 
+               
+        </div>
+      </div>  
+</div>
+    {{ form_end(form) }}     
 </div>
 {% endblock %}

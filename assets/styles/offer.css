@@ -1,0 +1,11 @@
+.offer_middle_container{
+	max-width: 1800px;
+}
+
+.offer_list_container{
+	max-width: 1800px;
+}
+
+.modal-body, td{
+	margin: 2%;
+}

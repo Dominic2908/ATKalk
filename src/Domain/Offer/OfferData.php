@@ -125,7 +125,7 @@ class OfferData
     /**
      * @return array
      */
-    public function getOrderListItems(): ?Product
+    public function getOrderListItems(): ?array
     {
         return $this->orderListItems;
     }

@@ -21,28 +21,22 @@
 {% endblock %}
 
 <div class="wrapper">
+{{ dump(form.vars.value.customer) }}
     {{ form_start(form) }}
-    	{{ form_row(form.customer_id) }}
-    	{{ form_row(form.creation_date )}}
-    	{{ form_row(form.order_list_number )}}
-    	{{ form_row(form.expiry_date )}}
-    	{{ form_row(form.tax_rate )}}
-    	{{ form_row(form.price )}}
+    	{{ form_row(form) }}
     {{ form_end(form) }}    
 </div>
 <tbody>
-{{ dump(offers.orderListItems) }}
-{{ offers.customer.id }}
 
-    {% for item in offers %}
+    {% for item in offers.orderListItems %}
     	<tr>
-        	<td>{{ item.customer.id }}</td>
-        	<td>{{ item.creationDate |date("m/d/Y")}}</td>
-        	<td>{{ item.orderListNumber }}</td>
-        	<td>{{ item.expiryDate |date("m/d/Y")}}</td>
+        	<td>{{ item.id }}</td>
+        	<td>{{ item.productName }}</td>
+        	<td>{{ item.productType }}</td>
+        	
+        	<td>{{ item.description }}</td>
         	<td>{{ item.taxRate }}</td>
         	<td>{{ item.price }}</td>
-        	
         	
         	<td><a href="{{ path('app_offer_editOffer', { id : item.id }) }}" class="list-group-item small">
         		<i class="fa fa-trash"></i>

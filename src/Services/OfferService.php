@@ -37,6 +37,8 @@ class OfferService
         
         $entityManager->persist($offer);
         
+        $entityManager->persist($offer->getCustomer());
+        
         $entityManager->flush();
     }
     
@@ -118,6 +120,15 @@ class OfferService
         $this->offerData->setTaxRate($offer->getTaxRate());
         $this->offerData->setPrice($offer->getPrice());
         
+    }
+    
+    public function getCustomerData(){
+        
+        $em = $this->doctrine->getManager();
+        
+        $customer_data = $this->doctrine->getRepository(Customer::class)->findAll();
+        
+        return $customer_data;
     }
 }
 

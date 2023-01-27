@@ -15,9 +15,7 @@ class OrderListType extends AbstractType
         $builder
             ->add('list_number')
             ->add('product_id')
-            ->add('save', SubmitType::class, [
-                
-            ])
+            
         ;
     }
 

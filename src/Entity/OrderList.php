@@ -14,6 +14,7 @@ class OrderList
     private ?int $id = null;
 
     #[ORM\Column]
+    
     private ?int $list_number = null;
 
     #[ORM\Column]
