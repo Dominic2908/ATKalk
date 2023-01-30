@@ -24,8 +24,7 @@ import './offer.js'
 //require('bootstrap/js/dist/popover');
 
 // start the Stimulus application
-
-//import './bootstrap';
+import './bootstrap';
 //import $ from 'jquery';
 //import greet from './greet';
 //$(document).ready(function() {

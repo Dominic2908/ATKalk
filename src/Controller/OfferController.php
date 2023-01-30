@@ -6,8 +6,10 @@ use App\Services\OfferService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Offer;
+use App\Entity\Customer;
 use App\Form\CustomerType;
 use App\Form\OfferType;
 use App\Form\OrderListType;
@@ -15,7 +17,7 @@ use App\Entity\OrderList;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
-use App\Entity\Customer;
+
 
 
 class OfferController extends AbstractController
@@ -31,12 +33,28 @@ class OfferController extends AbstractController
     }
     
     #[Route('/offer', name: 'app_offer')]
-    public function index(): Response
+    public function index(Request $request, ManagerRegistry $doctrine): Response
     {
         
-        return $this->render('offer/index.html.twig', [
-            'controller_name' => 'MaterialManagementController',
-        ]);
+        $customerId = $request->request->get("id");
+       
+        $entityManager = $doctrine->getManager();
+        
+        $customers = new Customer();
+        
+        $customers =  $doctrine->getRepository(Customer::class)->find($customerId);
+                
+        if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) { 
+            
+            $customers = $this->serializer->serialize($customers, 'json');
+            
+            return new JsonResponse(json_decode($customers));
+        
+        } else {
+            
+            return $this->render('offer/newOffer.html.twig');
+        
+        } 
     }
     
     #[Route('/offer/offerList', name: 'app_offer_offerList')]

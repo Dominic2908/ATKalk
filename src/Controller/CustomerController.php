@@ -23,9 +23,9 @@ class CustomerController extends AbstractController
         
         $customers =  $doctrine->getRepository(Customer::class)->findAll();
         
-        $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'new.html.twig';
+        //$template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'new.html.twig';
         
-        return $this->renderForm('product_admin/' . $template, [
+        return $this->renderForm('customer/index.html.twig', [
             
             'customers' => $customers,
             'options' => $options,

@@ -35,3 +35,8 @@
   font-weight: 700;
 }
 .customer_offer:hover {background-color: coral;}
+
+.adress_inf{
+ 	line-height: 1.9;
+ 	text-align: right;
+}
