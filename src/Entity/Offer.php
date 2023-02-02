@@ -35,26 +35,10 @@ class Offer
     #[Assert\Type(type: Customer::class)]
     #[Assert\Valid]
     protected  $customer;
-    
-    #[Assert\Type(type: Product::class)]
-    #[Assert\Valid]
-    protected  $product;
 
-    /**
-     * @return mixed
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $positions = [];
 
-    /**
-     * @param mixed $product
-     */
-    public function setProduct($product)
-    {
-        $this->product = $product;
-    }
 
     /**
      * @return mixed
@@ -145,6 +129,18 @@ class Offer
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getPositions(): array
+    {
+        return $this->positions;
+    }
+
+    public function setPositions(array $positions): self
+    {
+        $this->positions = $positions;
 
         return $this;
     }

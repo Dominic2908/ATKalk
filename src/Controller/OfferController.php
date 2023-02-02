@@ -17,6 +17,7 @@ use App\Entity\OrderList;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
+use App\Domain\Offer\OfferData;
 
 
 
@@ -84,7 +85,7 @@ class OfferController extends AbstractController
     public function newProduct(Request $request, ManagerRegistry $doctrine):Response
     {
         
-        $offer = new Offer();
+        $offer = new Offer();       
         
         $date = date_create();
         
@@ -99,6 +100,7 @@ class OfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             $offer = $form->getData();
+
             
             $customer = $offer->getCustomer();
             

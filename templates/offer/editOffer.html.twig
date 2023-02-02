@@ -1,53 +1,166 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Anlegen Offer{% endblock %}
+{% block title %}
+Anlegen Offer
+{% endblock %}
 
 {% block body %}
 
 {% block stylesheets %}
-     {{ parent() }}
-     {{ encore_entry_link_tags('offer') }}
+{{ parent() }}
+{{ encore_entry_link_tags('offer') }}
 {% endblock %}
 
 {% block javascripts %}
-     {{ parent() }}
-     {{ encore_entry_script_tags('offer') }}
+{{ parent() }}
+{{ encore_entry_script_tags('offer') }}
 {% endblock %}
 
 {% block menu %}
 
-	{% include ('menu/menu.html.twig') %}
+{% include ('menu/menu.html.twig') %}
 
 {% endblock %}
 
 <div class="wrapper">
-{{ dump(form.vars.value.customer) }}
-    {{ form_start(form) }}
-    	{{ form_row(form) }}
-    {{ form_end(form) }}    
-</div>
-<tbody>
 
-    {% for item in offers.orderListItems %}
-    	<tr>
-        	<td>{{ item.id }}</td>
-        	<td>{{ item.productName }}</td>
-        	<td>{{ item.productType }}</td>
-        	
-        	<td>{{ item.description }}</td>
-        	<td>{{ item.taxRate }}</td>
-        	<td>{{ item.price }}</td>
-        	
-        	<td><a href="{{ path('app_offer_editOffer', { id : item.id }) }}" class="list-group-item small">
-        		<i class="fa fa-trash"></i>
-        		<span style="font-size: 24px;">&#9997;</span>
-    		</a></td>	
-    		<td><a href="{{ path('app_offer_delOffer', { id : item.id }) }}" class="list-group-item small">
-        		<i class="fa fa-trash"></i>
-        		<span style="font-size: 24px;">&dagger;</span>
-    		</a></td>	
-        </tr>
-    {% endfor %}
-</tbody>
+	{{ form_start(form) }}
+	<div class="container">
+		<h3>persönliche Angaben</h3>
+		</br>
+		<div class="row">
+			<div class="col-6 col-sm-2">
+				<p class="pers_inf">Anrede</p>
+			</div>
+			<div class="col-6 col-sm-2">
+				{{ form_row(form.Customer.salutation) }}
+			</div>
+			<div class="w-100"></div>
+			<div class="col-6 col-sm-2">
+				<p class="pers_inf">Vorname</p>
+			</div>
+			<div class="col-6 col-sm-2">
+				{{ form_row(form.Customer.name) }}
+			</div>
+			<div class="w-100"></div>
+			<div class="col-6 col-sm-2">
+				<p class="pers_inf">Nachnahme</p>
+			</div>
+			<div class="col-6 col-sm-2">
+				{{ form_row(form.Customer.prename) }}
+			</div>
+			<div class="w-100"></div>
+			<div class="col-6 col-sm-2">
+				<p class="pers_inf">Mailadresse</p>
+			</div>
+			<div class="col-6 col-sm-2">
+				{{ form_row(form.Customer.mail) }}
+			</div>
+			<div class="w-100"></div>
+			<div class="col-6 col-sm-2">
+				<p class="pers_inf">Kundennummer</p>
+			</div>
+			<div class="col-6 col-sm-2">
+				{{ form_row(form.Customer.customerNumber) }}
+			</div>
+		</div>
+	</div>
+	<div class="container offer_middle_container">
+		<div class="row">
+			<div class="col">
+				<p>Erstellungsdatum</p>
+				{{ form_row(form.creation_date) }}
+			</div>
+			<div class="col-6">
+				<p>Order Liste</p>
+				{{ form_row(form.order_list_number) }}
+			</div>
+			<div class="col">
+
+				{{ form_row(form.expiry_date) }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">1 of 3</div>
+			<div class="col-5">2 of 3 (wider)</div>
+			<div class="col">3 of 3</div>
+		</div>
+	</div>
+	<div class="container offer_list_container" data-controller="offer">
+		<div class="row">
+			<h3>Rechnungsadresse</h3>
+			<div class="col">
+				<p class="adress_inf">
+					Strasse</br> Hausnummer</br> Postleitzahl</br> Stadt</br> Land</br>
+				</p>
+
+			</div>
+			<div class="col">
+				{{ form_row(form.Customer.street) }}
+				{{ form_row(form.Customer.number) }}
+				{{ form_row(form.Customer.postalcode) }}
+				{{ form_row(form.Customer.city) }}
+				{{ form_row(form.Customer.country) }}
+			</div>
+			<h3>Lieferadresse</h3>
+			<div class="col">
+				<p class="adress_inf">
+					Strasse</br> Hausnummer</br> Postleitzahl</br> Stadt</br> Land</br>
+				</p>
+			</div>
+			<div class="col">
+				{{ form_row(form.Customer.streetInvoice) }}
+				{{ form_row(form.Customer.numberInvoice) }}
+				{{ form_row(form.Customer.postlalcodeInvoice) }}
+				{{ form_row(form.Customer.cityInvoice) }}
+				{{ form_row(form.Customer.countryInvoice) }}
+
+			</div>
+		</div>
+	</div>
+	{{ form_label(form.positions) }}
+	{{ form_errors(form.positions) }}
+
+	<ul id="positions-fields-list"
+		data-prototype="{{ form_widget(form.positions.vars.prototype)|e }}"
+		data-widget-tags="{{ '<li></li>'|e }}"
+		data-widget-counter="{{ form.positions|length }}">
+
+		{% for positionsField in form.positions %}
+		<li>{{ form_errors(positionsField) }} {{ form_widget(positionsField) }}
+		</li>
+		{% endfor %}
+	</ul>
+
+	<button type="button" class="add-another-collection-widget"
+		data-list-selector="#positions-fields-list">Add another
+		Position</button>
+
+	<div class="container productList">
+		<div class="row">
+			<div class="col-sm-8"></div>
+			<div class="col-sm-4">
+				<table>
+					<thead>
+						<tr>
+							<th>Taxrate</th>
+							<th>Last Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{ form_row(form.tax_rate) }}</td>
+							<td>{{ form_row(form.price) }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	{{ dump(form.positions) }}
+
+	{{ form_end(form) }}
+
+</div>
 {% endblock %}
 

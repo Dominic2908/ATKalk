@@ -23,13 +23,13 @@ class ProductType extends AbstractType
                     'Produkt' => 'Produkt',
                 ],
             ])
-            ->add('price')
             ->add('description')
             ->add('taxRate')
             ->add('serialNumber')
             ->add('intNumber')
             ->add('storagePlace')
             ->add('quantity')
+            ->add('price')
             ->add('save', SubmitType::class, [
                 
             ])
