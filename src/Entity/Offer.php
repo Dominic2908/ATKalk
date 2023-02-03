@@ -39,6 +39,12 @@ class Offer
     #[ORM\Column(type: Types::ARRAY)]
     private array $positions = [];
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $short_description = null;
+
 
     /**
      * @return mixed
@@ -141,6 +147,35 @@ class Offer
     public function setPositions(array $positions): self
     {
         $this->positions = $positions;
+
+        return $this;
+    }
+    
+    public function removePositions(Product $positions): void
+    {
+        $this->positions->removeElement($positions);
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->short_description;
+    }
+
+    public function setShortDescription(?string $short_description): self
+    {
+        $this->short_description = $short_description;
 
         return $this;
     }

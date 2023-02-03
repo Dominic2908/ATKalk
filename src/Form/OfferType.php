@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
@@ -34,6 +35,13 @@ class OfferType extends AbstractType
             ])
             ->add('tax_rate')
             ->add('price')
+            ->add('description', TextareaType::class, [
+                'attr' => ['class' => 'tinymce',
+                    'cols' => '25',
+                    'rows' => '10'],
+                
+            ])
+            ->add('short_description')
             ->add('Customer', CustomerType::class, [
                 'label' => false,
             ])
@@ -47,6 +55,7 @@ class OfferType extends AbstractType
                 'allow_add' => true ,
                 'allow_delete' => true ,
                 'prototype' => true,
+                'by_reference' => false,
             ])
             ->add('save', SubmitType::class, [               
             ])

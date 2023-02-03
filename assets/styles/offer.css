@@ -1,9 +1,19 @@
+body {
+    background-color: #c0c0c0;
+}
+
+.row{
+	border: 1px solid black;
+	margin: 2px;
+}
+
 .wrapper { 
 	margin: 1em auto; 
 	max-width: 1800px; 
 	width: 95%; 
 	font: 12px/1.5 sans-serif; 
 	overflow: hidden;
+	border: 1px solid black;
 }
 .offer_middle_container{
 	max-width: 1800px;
@@ -54,4 +64,8 @@
 .product-box div{
 	float: left;
 	margin: 2px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
 }

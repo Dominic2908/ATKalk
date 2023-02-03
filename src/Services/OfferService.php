@@ -8,6 +8,7 @@ use App\Entity\OrderList;
 use App\Entity\Product;
 use App\Domain\Offer\ListItems;
 use App\Entity\Customer;
+use Symfony\Component\Validator\Constraints\Length;
 
 class OfferService
 {
@@ -27,6 +28,20 @@ class OfferService
         $entityManager = $this->doctrine->getManager();
         
         $offers =  $this->doctrine->getRepository(Offer::class)->findAll();
+        
+        
+        for($i = 0; $i < count($offers); $i++){
+            
+            $offer = new Offer();
+            
+            $offer = $offers[$i];
+            
+            $customer = $this->doctrine->getRepository(Customer::class)->find($offer->getCustomerId());
+            
+            $offers[$i]->setCustomer($customer);
+        }
+        
+        
         
         return $offers;
     }
@@ -129,6 +144,15 @@ class OfferService
         $customer_data = $this->doctrine->getRepository(Customer::class)->findAll();
         
         return $customer_data;
+    }
+    
+    public function getProductData(){
+        
+        $em = $this->doctrine->getManager();
+        
+        $product_data = $this->doctrine->getRepository(Product::class)->findAll();
+        
+        return $product_data;
     }
 }
 

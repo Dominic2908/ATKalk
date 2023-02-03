@@ -100,7 +100,6 @@ class OfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             $offer = $form->getData();
-
             
             $customer = $offer->getCustomer();
             
@@ -110,11 +109,14 @@ class OfferController extends AbstractController
         }
         
         $customer_data = $this->offerService->getCustomerData();
+        
+        $product_data = $this->offerService->getProductData();
  
         return $this->renderForm('offer/newOffer.html.twig', [
             
             'form' => $form,
             'customer_data' => $customer_data,
+            'product_data' => $product_data,
             
         ]);
     }

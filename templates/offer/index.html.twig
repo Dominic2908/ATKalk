@@ -1,70 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MaterialManagementController!{% endblock %}
+{% block title %}
+Hello MaterialManagementController!
+{% endblock %}
 
 {% block body %}
 
 {% block stylesheets %}
-     {{ parent() }}
-     {{ encore_entry_link_tags('offer') }}
+{{ parent() }}
+{{ encore_entry_link_tags('offer') }}
 {% endblock %}
 
 {% block javascripts %}
-     {{ parent() }}
-     {{ encore_entry_script_tags('offer') }}
+{{ parent() }}
+{{ encore_entry_script_tags('offer') }}
 {% endblock %}
 
 
 {% block menu %}
 
-	{% include ('menu/menu.html.twig') %}
+{% include ('menu/menu.html.twig') %}
 
 {% endblock %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+.example-wrapper {
+	margin: 1em auto;
+	max-width: 800px;
+	width: 95%;
+	font: 18px/1.5 sans-serif;
+}
 
+.example-wrapper code {
+	background: #F5F5F5;
+	padding: 2px 6px;
+}
+</style>
+{{ dump(offers) }}
 <div class="wrapper">
-<h1>Offer List!</h1>
-<button type="button" onclick="location.href='{{ path('app_offer_newOffer') }}';" class="btn btn-primary">NEW</button>
-    <table>
-    <thead>
-    		<tr>
-        		<th> Produktname </th>
-        		<th> Produkttyp </th>
-        		<th> Preis </th>
-        		<th> Beschreibung </th>
-        		<th> Steuersatz </th>
-        		<th> Seriennummer </th>
-        		<th> interne Nummer </th>
-        		<th> Lagerplatz </th>
-        		<th> Menge </th>
-        		
-    		</tr>
-    </thead>
-    <tbody>
-        {% for item in offers %}
-        	<tr>
-            	<td>{{ item.customerId }}</td>
-            	<td>{{ item.creationDate |date("m/d/Y")}}</td>
-            	<td>{{ item.orderListNumber }}</td>
-            	<td>{{ item.expiryDate |date("m/d/Y")}}</td>
-            	<td>{{ item.taxRate }}</td>
-            	<td>{{ item.price }}</td>
-            	
-            	
-            	<td><a href="{{ path('app_offer_editOffer', { id : item.id }) }}" class="list-group-item small">
-            		<i class="fa fa-trash"></i>
-            		<span style="font-size: 24px;">&#9997;</span>
-        		</a></td>	
-        		<td><a href="{{ path('app_offer_delOffer', { id : item.id }) }}" class="list-group-item small">
-            		<i class="fa fa-trash"></i>
-            		<span style="font-size: 24px;">&dagger;</span>
-        		</a></td>	
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+	<h1>Offer List!</h1>
+	<button type="button"
+		onclick="location.href='{{ path('app_offer_newOffer') }}';"
+		class="btn btn-primary">NEW</button>
+	<table>
+		<thead>
+			<tr>
+				<th>Produktname</th>
+				<th>Produkttyp</th>
+				<th>Preis</th>
+				<th>Beschreibung</th>
+				<th>Steuersatz</th>
+				<th>Seriennummer</th>
+				<th>interne Nummer</th>
+				<th>Lagerplatz</th>
+				<th>Menge</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in offers %}
+			<tr>
+				<td>{{ item.customerId }}</td>
+				<td>{{ item.creationDate |date("m/d/Y")}}</td>
+				<td>{{ item.orderListNumber }}</td>
+				<td>{{ item.expiryDate |date("m/d/Y")}}</td>
+				<td>{{ item.taxRate }}</td>
+				<td>{{ item.price }}</td>
+
+
+				<td><a
+					href="{{ path('app_offer_editOffer', { id : item.id }) }}"
+					class="list-group-item small"> <i class="fa fa-trash"></i> <span
+						style="font-size: 24px;">&#9997;</span>
+				</a></td>
+				<td><a
+					href="{{ path('app_offer_delOffer', { id : item.id }) }}"
+					class="list-group-item small"> <i class="fa fa-trash"></i> <span
+						style="font-size: 24px;">&dagger;</span>
+				</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 </div>
 {% endblock %}

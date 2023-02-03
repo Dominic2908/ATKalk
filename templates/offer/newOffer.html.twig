@@ -82,6 +82,71 @@ Hello SalesManagementController!
 	</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade bd-example-modal-xl" id="exampleModal_products"
+	tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Producte</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					<table style="width: 100%">
+						<thead>
+							<tr>
+								<th>Produktname</th>
+								<th>Produkttyp</th>
+								<th>Beschreibung</th>
+								<th>Seriennummer</th>
+								<th>interne Nummer</th>
+								<th>Preis</th>
+							</tr>
+						</thead>
+
+						{% for item in product_data %}
+
+						<tr id="{{ item.id }}" class="customer_offer">
+							<td>
+								{{ item.productName }}
+							</td>
+							<td>
+								{{ item.productType }}
+							</td>
+							<td>
+								{{ item.description }}
+							</td>
+							<td>
+								{{ item.serialNumber }}
+							</td>
+							<td>
+								{{ item.intNumber }}
+							</td>
+							<td>
+								{{ item.price }}
+							</td>
+							<td><button type="button" id="{{ item.id }}"
+									class="btn btn-secondary" data-dismiss="modal">take</button></td>
+						</tr>
+
+						{% endfor %}
+
+					</table>
+				</div>
+				<span data-offer-target="output">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="wrapper">
 
 	{{ form_start(form) }}
@@ -143,11 +208,6 @@ Hello SalesManagementController!
 				{{ form_row(form.expiry_date) }}
 			</div>
 		</div>
-		<div class="row">
-			<div class="col">1 of 3</div>
-			<div class="col-5">2 of 3 (wider)</div>
-			<div class="col">3 of 3</div>
-		</div>
 	</div>
 	<div class="container offer_list_container" data-controller="offer">
 		<div class="row">
@@ -179,6 +239,11 @@ Hello SalesManagementController!
 				{{ form_row(form.Customer.countryInvoice) }}
 
 			</div>
+		</div>
+		<div class="row">
+			<div class="col">{{ form_row(form.short_description) }}</div>
+			<div class="col-5">{{ form_row(form.description) }}</div>
+			<div class="col"></div>
 		</div>
 	</div>
 	{% macro niceForm(form) %}
@@ -224,17 +289,13 @@ Hello SalesManagementController!
 		data-prototype="{{ formMacro.niceForm(form.positions.vars.prototype)|e }}"
 		data-widget-tags="{{ '<li></li>'|e }}"
 		data-widget-counter="{{ form.positions|length }}">
-
-		{% for positionsField in form.positions %}
-		<li>{{ form_errors(positionsField) }} {{ form_widget(positionsField.productName) }}
-		</li>
-		{% endfor %}
 	</ul>
 
-	<button type="button" class="add-another-collection-widget"
+	<button type="button" class="add-another-collection-widget" data-toggle="modal" data-target="#exampleModal_products"
 		data-list-selector="#positions-fields-list">Add another
 		Position</button>
-
+ 
+			
 	<div class="container productList">
 		<div class="row">
 			<div class="col-sm-8"></div>
@@ -256,7 +317,7 @@ Hello SalesManagementController!
 			</div>
 		</div>
 	</div>
-
+{{ dump(form) }}
 	{{ form_end(form) }}
 
 </div>
