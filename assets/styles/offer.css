@@ -67,5 +67,33 @@ body {
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2
+  background-color: rgb(242, 242, 242)
+}
+
+#positions-fields-list{
+	margin: 1em auto; 
+	max-width: 1800px; 
+	width: 95%; 
+	font: 12px/1.5 sans-serif; 
+	overflow: hidden;
+	border: 1px solid black;
+	background-color: #f2f2f2;
+}
+
+.product-box{
+	margin: 1em auto; 
+	max-width: 1800px; 
+	width: 95%; 
+	font: 12px/1.5 sans-serif; 
+	overflow: hidden;
+	border: 1px solid black;
+	background-color: #f2f2f2;
+}
+
+.MYCLASSFOR_LABEL {
+	margin-right: 10%;
+}
+
+.product-box div {
+	width:10%;
 }

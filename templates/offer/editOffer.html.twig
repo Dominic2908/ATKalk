@@ -121,16 +121,17 @@ Anlegen Offer
 	{{ form_label(form.positions) }}
 	{{ form_errors(form.positions) }}
 
-	<ul id="positions-fields-list"
+	<div id="positions-fields-list"
 		data-prototype="{{ form_widget(form.positions.vars.prototype)|e }}"
 		data-widget-tags="{{ '<li></li>'|e }}"
 		data-widget-counter="{{ form.positions|length }}">
 
-		{% for positionsField in form.positions %}
-		<li>{{ form_errors(positionsField) }} {{ form_widget(positionsField) }}
-		</li>
+		{% for positionsField in form.positions %}		
+			<div class="inner_field_list">				
+	            {{ form_errors(positionsField) }} {{ form_widget(positionsField) }}				
+			</div>
 		{% endfor %}
-	</ul>
+	</div>
 
 	<button type="button" class="add-another-collection-widget"
 		data-list-selector="#positions-fields-list">Add another
@@ -158,7 +159,7 @@ Anlegen Offer
 		</div>
 	</div>
 	{{ dump(form.positions) }}
-
+{{ dump(offers) }}
 	{{ form_end(form) }}
 
 </div>
