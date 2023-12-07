@@ -18,6 +18,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
 use App\Domain\Offer\OfferData;
+use App\Entity\Product;
 
 
 
@@ -33,7 +34,7 @@ class OfferController extends AbstractController
         $this->serializer = $serializer;
     }
     
-    #[Route('/offer', name: 'app_offer')]
+    #[Route('/offerCustomer', name: 'app_offer')]
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
         
@@ -58,6 +59,34 @@ class OfferController extends AbstractController
         } 
     }
     
+    #[Route('/offerProduct', name: 'app_offer_Product')]
+    public function offerProduct(Request $request, ManagerRegistry $doctrine): Response
+    {
+        
+        $productsId = $request->request->get("id");
+        
+        $entityManager = $doctrine->getManager();
+        
+        $products = new Product();
+        
+        $products =  $doctrine->getRepository(Product::class)->find($productsId);
+        
+        if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {
+            
+            $products = $this->serializer->serialize($products, 'json');
+            
+            return new JsonResponse(json_decode($products));
+            
+        } else {
+            
+            return $this->render('offer/newOffer.html.twig');
+            
+        }
+    }
+    
+    /**
+     * 
+     */
     #[Route('/offer/offerList', name: 'app_offer_offerList')]
     public function productList():Response
     {
@@ -156,10 +185,13 @@ class OfferController extends AbstractController
         
         $offerEdit = $this->serializer->serialize($offerEdit, 'json');
         
+        $product_data = $this->offerService->getProductData();
+        
         return $this->renderForm('offer/editOffer.html.twig', [
             //'data' => $data,
             'form' => $form,
             'offers' => json_decode($offerEdit),
+            'product_data' => $product_data,
             //'options' => $options,
         ]);
     }

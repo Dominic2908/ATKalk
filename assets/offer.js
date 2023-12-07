@@ -1,12 +1,13 @@
 import './styles/offer.css';
 
 $(document).ready(function() {
+	
 	$('#offer_order_list_number').attr('readonly', true);
 	$('#offer_Customer_id').hide();
 	initajaxCustomer();
 	initPrototype();
+	initajaxProductOffer(0);
 	var $wrapper = $('.js-genus-scientist-wrapper');
-	
 	$wrapper.on('click', '.js-remove-scientist', function(e) {
 	console.log($wrapper);
 		e.preventDefault();
@@ -16,11 +17,11 @@ $(document).ready(function() {
  		.remove();
 	});
 });
-
+window.globalCounter = 100;
 function initajaxCustomer() {
 	$('.customer_offer').click(function(event) {
 		$.ajax({
-			url: '/offer',
+			url: '/offerCustomer',
 			type: 'POST',
 			dataType: 'json',
 			data: {
@@ -55,6 +56,38 @@ function initajaxCustomer() {
 	});
 }
 
+function initajaxProductOffer(counter) {
+	$('.product_offer').click(function(event) {
+	console.log(window.globalCounter);
+	let counterInt = window.globalCounter;
+		$.ajax({
+			url: '/offerProduct',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				id: event.target.id,
+			},
+			async: true,
+
+			success: function(data) {
+				console.log(data);
+				$('#offer_positions_' + counterInt + '_productName').val(data["productName"]);
+				$('#offer_positions_' + counterInt + '_productType').val(data["productType"]);
+				$('#offer_positions_' + counterInt + '_price').val(data["price"]);
+				$('#offer_positions_' + counterInt + '_description').val(data["description"]);
+				$('#offer_positions_' + counterInt + '_taxRate').val(data["taxRate"]);
+				$('#offer_positions_' + counterInt + '_serialNumber').val(data["serialNumber"]);
+				$('#offer_positions_' + counterInt + '_intNumber').val(data["intNumber"]);
+				$('#offer_positions_' + counterInt + '_storagePlace').val(data["storagePlace"]);
+				$('#offer_positions_' + counterInt + '_quantity').val(data["quantity"]);
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert('Ajax request failed.');
+			}
+		});
+	});
+}
+
 function initPrototype() {
 	jQuery('.add-another-collection-widget').click(function(e) {
 		var list = jQuery(jQuery(this).attr('data-list-selector'));
@@ -67,7 +100,8 @@ function initPrototype() {
 		// with a number that's unique to your emails
 		// end name attribute looks like name="contact[emails][2]"
 		newWidget = newWidget.replace(/__name__/g, counter);
-		console.log(counter);
+		//console.log(counter);
+		window.globalCounter = counter;
 		// Increase the counter
 		counter++;
 		// And store it, the length cannot be used if deleting widgets is allowed

@@ -22,6 +22,71 @@ Anlegen Offer
 
 {% endblock %}
 
+<!-- Modal -->
+<div class="modal fade bd-example-modal-xl" id="exampleModal_products"
+	tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Producte</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					<table style="width: 100%">
+						<thead>
+							<tr>
+								<th>Produktname</th>
+								<th>Produkttyp</th>
+								<th>Beschreibung</th>
+								<th>Seriennummer</th>
+								<th>interne Nummer</th>
+								<th>Preis</th>
+							</tr>
+						</thead>
+
+						{% for item in product_data %}
+
+						<tr id="{{ item.id }}" class="product_offer">
+							<td>
+								{{ item.productName }}
+							</td>
+							<td>
+								{{ item.productType }}
+							</td>
+							<td>
+								{{ item.description }}
+							</td>
+							<td>
+								{{ item.serialNumber }}
+							</td>
+							<td>
+								{{ item.intNumber }}
+							</td>
+							<td>
+								{{ item.price }}
+							</td>
+							<td><button type="button" id="{{ item.id }}"
+									class="btn btn-secondary" data-dismiss="modal">take</button></td>
+						</tr>
+
+						{% endfor %}
+
+					</table>
+				</div>
+				<span data-offer-target="output">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="wrapper">
 
 	{{ form_start(form) }}
@@ -133,7 +198,7 @@ Anlegen Offer
 		{% endfor %}
 	</div>
 
-	<button type="button" class="add-another-collection-widget"
+	<button type="button" class="add-another-collection-widget" data-toggle="modal" data-target="#exampleModal_products"
 		data-list-selector="#positions-fields-list">Add another
 		Position</button>
 
